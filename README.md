@@ -10,5 +10,3 @@ How to compile and run
 2 : Type
 
     make run
-    
-Have fun.
