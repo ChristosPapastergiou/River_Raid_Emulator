@@ -3,13 +3,13 @@
 #include "state.h"
 #include "ADTList.h"
 
-struct state {
+struct state{
 	List objects;
 	struct state_info info;
 };
 
 // Making the object
-static Object create_object(ObjectType type, float x, float y, float width, float height) {
+static Object create_object(ObjectType type, float x, float y, float width, float height){
 	Object obj = malloc(sizeof(*obj));
 	obj->type = type;
 	obj->rect.x = x;
@@ -20,7 +20,7 @@ static Object create_object(ObjectType type, float x, float y, float width, floa
 }
 
 // Visible only to this file. Function for objects
-static void add_objects(State state, float start_y) {
+static void add_objects(State state, float start_y){
 	for (int i = 0; i < BRIDGE_NUM; i++) {
 		Object bridge = create_object(BRIDGE, 0, start_y - 4 * (i+1) * SPACING, SCREEN_WIDTH, 20);
 
@@ -35,7 +35,7 @@ static void add_objects(State state, float start_y) {
 		list_insert_next(state->objects, list_last(state->objects), bridge);
 
 		// Adding 3 enemies before every bridge
-		for (int j = 0; j < 3; j++) {
+		for(int j = 0; j < 3; j++){
 			float y = bridge->rect.y + (j+1)*SPACING;
 
 			Object enemy = rand() % 2 == 0 ? create_object(WARSHIP, (SCREEN_WIDTH - 83)/2, y, 83, 30) : create_object(HELICOPTER, (SCREEN_WIDTH - 66)/2, y, 66, 25);
@@ -46,7 +46,7 @@ static void add_objects(State state, float start_y) {
 	}
 }
 
-State state_create() {
+State state_create(){
 	State state = malloc(sizeof(*state));
 
 	state->info.playing = true;
@@ -62,11 +62,11 @@ State state_create() {
 	return state;
 }
 
-StateInfo state_info(State state) {
+StateInfo state_info(State state){
 	return &state->info;
 }
 
-List state_objects(State state, float y_from, float y_to) {
+List state_objects(State state, float y_from, float y_to){
 	List list = list_create(NULL);
 
 	for(ListNode node=list_first(state->objects); node!=LIST_EOF; node=list_next(state->objects, node)){
@@ -80,7 +80,7 @@ List state_objects(State state, float y_from, float y_to) {
 	return list;
 }
 
-void state_update(State state, KeyState keys) {
+void state_update(State state, KeyState keys){
 
 	/**** Start-Pause-Exit ****/ 
 
