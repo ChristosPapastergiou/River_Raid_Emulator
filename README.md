@@ -5,6 +5,6 @@ Emulating the classic Atari game River Raid in C
 How to compile and run
 ---------------------------------
 
-cd game directory
+        cd game
 
         compile & run : make run
