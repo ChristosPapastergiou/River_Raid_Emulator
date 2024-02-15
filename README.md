@@ -1,4 +1,5 @@
 # River Raid Emulator
+
 Emulating the classic Atari game River Raid in C
 
 ---------------------------------
